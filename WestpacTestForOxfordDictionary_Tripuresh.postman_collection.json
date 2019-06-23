@@ -1,0 +1,450 @@
+{
+	"info": {
+		"_postman_id": "85ba5dfa-4c30-4a43-b2e3-de8dd4316a31",
+		"name": "WestpacTestForOxfordDictionary_Tripuresh",
+		"description": "This collection has been made for GET Entries API, as part of a test given by Westpac.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Valid word requested",
+			"item": [
+				{
+					"name": "200 status code returned when valid word requested",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04eef0bb-0f0c-4f0d-8217-d4a788f2e306",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "app_id",
+								"type": "text",
+								"value": "f285be58"
+							},
+							{
+								"key": "app_key",
+								"type": "text",
+								"value": "86520376e4602af429117367ea2a6b34"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://od-api.oxforddictionaries.com/api/v2/entries/:source_lang/:word_id?strictMatch=false",
+							"protocol": "https",
+							"host": [
+								"od-api",
+								"oxforddictionaries",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"entries",
+								":source_lang",
+								":word_id"
+							],
+							"query": [
+								{
+									"key": "strictMatch",
+									"value": "false"
+								}
+							],
+							"variable": [
+								{
+									"key": "source_lang",
+									"value": "en-gb"
+								},
+								{
+									"key": "word_id",
+									"value": "ace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Correct metadata returned when valid word is requested",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04eef0bb-0f0c-4f0d-8217-d4a788f2e306",
+								"exec": [
+									"pm.test(\"The value of metadata 'operation' is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.metadata.operation).to.eql(\"retrieve\");",
+									"});",
+									"",
+									"pm.test(\"The value of metadata 'provider' is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.metadata.provider).to.eql(\"Oxford University Press\");",
+									"});",
+									"",
+									"pm.test(\"The value of metadata 'schema' is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.metadata.schema).to.eql(\"RetrieveEntry\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "app_id",
+								"type": "text",
+								"value": "f285be58"
+							},
+							{
+								"key": "app_key",
+								"type": "text",
+								"value": "86520376e4602af429117367ea2a6b34"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://od-api.oxforddictionaries.com/api/v2/entries/:source_lang/:word_id?strictMatch=false",
+							"protocol": "https",
+							"host": [
+								"od-api",
+								"oxforddictionaries",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"entries",
+								":source_lang",
+								":word_id"
+							],
+							"query": [
+								{
+									"key": "strictMatch",
+									"value": "false"
+								}
+							],
+							"variable": [
+								{
+									"key": "source_lang",
+									"value": "en-gb"
+								},
+								{
+									"key": "word_id",
+									"value": "ace"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This is where we are capturing scenarios for sending valid word in the request.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8f8ac572-fd44-4d41-9f09-4886f7695fd3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9c3c9220-02d6-4bd4-aad4-e71892bde25f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Invalid word requested",
+			"item": [
+				{
+					"name": "404 status code returned when invalid word requested",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04eef0bb-0f0c-4f0d-8217-d4a788f2e306",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "app_id",
+								"value": "f285be58",
+								"type": "text"
+							},
+							{
+								"key": "app_key",
+								"value": "86520376e4602af429117367ea2a6b34",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://od-api.oxforddictionaries.com/api/v2/entries/:source_lang/:word_id?strictMatch=false",
+							"protocol": "https",
+							"host": [
+								"od-api",
+								"oxforddictionaries",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"entries",
+								":source_lang",
+								":word_id"
+							],
+							"query": [
+								{
+									"key": "strictMatch",
+									"value": "false"
+								}
+							],
+							"variable": [
+								{
+									"key": "source_lang",
+									"value": "en-gb"
+								},
+								{
+									"key": "word_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404 status code returned when invalid source language requested",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04eef0bb-0f0c-4f0d-8217-d4a788f2e306",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "app_id",
+								"type": "text",
+								"value": "f285be58"
+							},
+							{
+								"key": "app_key",
+								"type": "text",
+								"value": "86520376e4602af429117367ea2a6b34"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://od-api.oxforddictionaries.com/api/v2/entries/:source_lang/:word_id?strictMatch=false",
+							"protocol": "https",
+							"host": [
+								"od-api",
+								"oxforddictionaries",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"entries",
+								":source_lang",
+								":word_id"
+							],
+							"query": [
+								{
+									"key": "strictMatch",
+									"value": "false"
+								}
+							],
+							"variable": [
+								{
+									"key": "source_lang",
+									"value": "1"
+								},
+								{
+									"key": "word_id",
+									"value": "ace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Correct error response is returned when invalid word is requested",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04eef0bb-0f0c-4f0d-8217-d4a788f2e306",
+								"exec": [
+									"pm.test(\"Correct error response is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.error).to.eql(\"No entry found matching supplied source_lang, word and provided filters\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "app_id",
+								"type": "text",
+								"value": "f285be58"
+							},
+							{
+								"key": "app_key",
+								"type": "text",
+								"value": "86520376e4602af429117367ea2a6b34"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://od-api.oxforddictionaries.com/api/v2/entries/:source_lang/:word_id?strictMatch=false",
+							"protocol": "https",
+							"host": [
+								"od-api",
+								"oxforddictionaries",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"entries",
+								":source_lang",
+								":word_id"
+							],
+							"query": [
+								{
+									"key": "strictMatch",
+									"value": "false"
+								}
+							],
+							"variable": [
+								{
+									"key": "source_lang",
+									"value": "en-gb"
+								},
+								{
+									"key": "word_id",
+									"value": "nknjknkjnjkn"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This is where we are capturing scenarios for recieving status code 404.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4b989025-f8b2-4087-87f4-5abc5ac86151",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "41c02512-caed-4435-807b-d286794f89bc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "776f3218-0e14-4bf7-b8e9-38ced9a985f9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2d7aecd8-3c1f-4b26-9e9b-b22bce6503d6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
